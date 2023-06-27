@@ -12,4 +12,9 @@ class GameController < ApplicationController
     card_word = params["card_word"]
     render json: @game.progress(card_word).to_json
   end
+
+  def update_game
+    @game = Game.find_by(id: params["game_id"])
+    render json: @game.to_json
+  end
 end

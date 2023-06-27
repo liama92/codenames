@@ -18,6 +18,17 @@ var CodeNames = createReactClass({
         })
     }
 
+    const updateGame = () => {
+      fetch(`game/update_game?game_id=${gameId}`)
+        .then((data) => {
+          data.json().then((json) => {
+            this.setState({cards: json.cards})
+          })
+        })
+    }
+
+    setTimeout(updateGame, 1000);
+
 
     return (
       <React.Fragment>

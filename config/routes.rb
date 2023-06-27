@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :game, only: [:show, :index] do
     member do
       get "progress_game"
+      get "update_game"
     end
     
   end
