@@ -1,1 +1,12 @@
+<select id="team">
+  <option value="blue">Blue</option>
+  <option value="red">Red</option>
+</select>
+
+<select id="role">
+  <option value="spymaster">Spymaster</option>
+  <option value="operator">Operative</option>
+</select>
+
+
 <%= react_component("CodeNames", props = { game_id: @game.id, cards: @game.cards, clues: @game.clues }) %>

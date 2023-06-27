@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get "progress_game"
       get "update_game"
+      get "add_clue"
     end
     
   end

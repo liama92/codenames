@@ -4,8 +4,8 @@ var CodeNames = createReactClass({
   },
   render: function() {
     const player = {
-      role: 'operator',
-      team: 'blue'
+      role: document.getElementById('role').value,
+      team: document.getElementById('team').value
     }
     const gameId = this.props.game_id
 
@@ -22,7 +22,7 @@ var CodeNames = createReactClass({
       fetch(`game/update_game?game_id=${gameId}`)
         .then((data) => {
           data.json().then((json) => {
-            this.setState({cards: json.cards})
+            this.setState({cards: json.cards, clues: json.clues})
             checkEndGame()
           })
         })
@@ -46,6 +46,16 @@ var CodeNames = createReactClass({
       }
     }
 
+    const submitClue = () => {
+      const clueText = document.getElementById('clue')
+      fetch(`game/add_clue?clue_text=${clueText.value}&game_id=${gameId}`)
+        .then(() => {
+          updateGame()
+        }).finally(() => {
+          clueText.value = ''
+        })
+    }
+
     return (
       <React.Fragment>
         <div className="gameContainer">
@@ -57,10 +67,18 @@ var CodeNames = createReactClass({
             }
           </div>
           <div className="clueContainer">
-            {
+          {
               this.state.clues.map((clue, i) => (
                 <Clue key={i} player={player} clue={clue} />
               ))
+            }
+            {
+              player.role === 'spymaster' ? (
+                <div>
+                  <textarea id='clue'></textarea>
+                  <div onClick={submitClue}>Submit clue</div>
+                </div>
+              ) : <div></div>
             }
           </div>
         </div>
