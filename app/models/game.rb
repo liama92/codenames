@@ -9,6 +9,7 @@ class Game < ApplicationRecord
     )
     set_words(g)
     g.save!
+    g
   end
 
   private
