@@ -2,14 +2,30 @@ class Game < ApplicationRecord
   serialize :cards
 
   def self.create_game
+    # current_team = 0 => red team, current_team = 1 => blue team
+    # current_phase = 0 => clue giving turn, current_phase = 1 => guessing turn
+
     g = new(
-      current_phase: 1,
-      current_team: 1,
+      current_phase: 0,
+      current_team: 0,
       cards: []
     )
     set_words(g)
     g.save!
     g
+  end
+
+  def progress(card_word)
+    card = cards.find { _1[:word] == card_word }
+    card[:revealed] = true
+
+    if self.current_phase == 1
+      self.current_team = (self.current_team + 1)%2 
+    end
+    self.current_phase = (self.current_phase + 1)%2 
+
+    self.save!
+    self
   end
 
   private
