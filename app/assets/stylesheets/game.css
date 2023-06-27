@@ -2,18 +2,24 @@
     display: grid;
     justify-content: center;
     gap: 0.5rem;
-    grid-template-rows: repeat(5, 9vw);
-    grid-template-columns: repeat(5, 12vw);
+    grid-template-rows: repeat(5, 8vw);
+    grid-template-columns: repeat(5, 13vw);
 }
 
 .card {
     display: grid;
-    justify-content: center;
-    align-content: center;
+    grid-template-rows: 60% 40%;
     border-radius: 0.8rem;
+    border: 0.6rem solid;
 }
 
 .card-word {
-    display: flex;
+    display: grid;
+    justify-self: center;
+    align-self: center;
+    width: 90%;
+    height: 85%;
+    border-radius: 0 0 5px 5px;
     background-color: white;
+    text-align: center;
 }
