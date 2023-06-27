@@ -3,7 +3,6 @@ var Card = createReactClass({
   render: function() {
     const { colour, revealed, word } = this.props.cardData
     const { role, team } = this.props.player
-
     const cardColour = () => {
       if (revealed || role === 'spymaster') {
         return colour
@@ -30,7 +29,11 @@ var Card = createReactClass({
 
     return (
       <React.Fragment>
-        <div className='card' style={{backgroundColor: cardColour(), borderColor: borderCardColour()}}>
+        <div
+          className='card'
+          style={{backgroundColor: cardColour()}}
+          onClick={() => this.props.onClick(word)}
+          >
           <div className='card-upper'>
           </div>
           <div className='card-word'>
