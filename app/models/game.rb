@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
   serialize :cards
+  serialize :clues
 
   def self.create_game
     # current_team = 0 => red team, current_team = 1 => blue team
@@ -8,7 +9,8 @@ class Game < ApplicationRecord
     g = new(
       current_phase: 0,
       current_team: 0,
-      cards: []
+      cards: [],
+      clues: []
     )
     set_words(g)
     g.save!

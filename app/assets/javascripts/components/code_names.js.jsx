@@ -1,6 +1,6 @@
 var CodeNames = createReactClass({
   getInitialState: function() {
-    return {cards: this.props.cards, gameOver: false}
+    return {cards: this.props.cards, clues: this.props.clues, gameOver: false}
   },
   render: function() {
     const player = {
@@ -48,12 +48,21 @@ var CodeNames = createReactClass({
 
     return (
       <React.Fragment>
-        <div className="grid">
-          {
-            this.state.cards.map((card, i) => (
-              <Card key={i} onClick={cardClicked} player={player} cardData={card} />
-            ))
-          }
+        <div className="gameContainer">
+          <div className="cardContainer">
+            {
+              this.state.cards.map((card, i) => (
+                <Card key={i} onClick={cardClicked} player={player} cardData={card} />
+              ))
+            }
+          </div>
+          <div className="clueContainer">
+            {
+              this.state.clues.map((clue, i) => (
+                <Clue key={i} player={player} clue={clue} />
+              ))
+            }
+          </div>
         </div>
       </React.Fragment>
     );
