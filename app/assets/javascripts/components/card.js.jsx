@@ -11,13 +11,13 @@ var Card = createReactClass({
         return 'grey'
       }
     }
-    console.log('calling card colour')
-    console.log(cardColour())
 
     return (
       <React.Fragment>
-        <div className='card-outer' style={{backgroundColor: cardColour()}}>
-          {word}
+        <div className='card' style={{backgroundColor: cardColour()}}>
+          <div className='card-word'>
+            {word.toUpperCase()}
+          </div>
         </div>
       </React.Fragment>
     );
